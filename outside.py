@@ -30,21 +30,24 @@ class SelfDrive:
             if (scan.ranges[90] < 0.25 or scan.ranges[80] < 0.25) and (scan.ranges[270] > 0.25 or scan.ranges[280] > 0.25):
                 turtle_vel.linear.x = 0.18
                 turtle_vel.angular.z = 0.0
-            elif (scan.ranges[90] > 0.25 or scan.ranges[80] > 0.25) and (scan.ranges[270] > 0.25 or scan.ranges[280] > 0.25):
-                turtle_vel.linear.x = 0.18
-                turtle_vel.angular.z = 1.0
-                if scan.ranges[110] > 0.25:
-                    turtle_vel.linear.x = 0.18
-                    turtle_vel.angular.z = -0.1
-                elif scan.ranges[290]>0.25:
-                    turtle_vel.linear.x = 0.18
-                    turtle_vel.angular.z = 0.1
             elif (scan.ranges[90] > 0.25 or scan.ranges[80] > 0.25) and (scan.ranges[270] < 0.25 or scan.ranges[280] < 0.25):
                 turtle_vel.linear.x = 0.18
                 turtle_vel.angular.z = 0.0
+            elif (scan.ranges[90] > 0.25 or scan.ranges[80] > 0.25) and (scan.ranges[270] > 0.25 or scan.ranges[280] > 0.25):
+                if scan.ranges[130] < 0.25:
+                    turtle_vel.linear.x = 0.18
+                    turtle_vel.angular.z = -0.1
+                elif scan.ranges[220] < 0.25:
+                    turtle_vel.linear.x = 0.18
+                    turtle_vel.angular.z = 0.1
+                else: 
+                    turtle_vel.linear.x = 0.18    
+                    turtle_vel.angular.z = 1.0
             else:
-                turtle_vel.linear.x = 0.18
-                turtle_vel.angular.z = 0.0
+                turtl_vel.linear.x=0.18
+                turtle_vel.angular.z=0.0          
+
+
         self.publisher.publish(turtle_vel)
 
 
